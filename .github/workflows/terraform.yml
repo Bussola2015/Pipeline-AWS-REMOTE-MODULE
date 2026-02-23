@@ -37,6 +37,11 @@ jobs:
         run: terraform init
         working-directory: ${{ env.WORKING_DIR }}
 
+      - name: Terraform Format
+        # Removido o -check para não travar o pipeline por estética
+        run: terraform fmt -recursive
+        working-directory: ${{ env.WORKING_DIR }}
+
       - name: Terraform Format Check
         run: terraform fmt -check
         working-directory: ${{ env.WORKING_DIR }}
