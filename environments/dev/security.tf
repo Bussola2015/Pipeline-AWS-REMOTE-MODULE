@@ -16,13 +16,13 @@ resource "aws_security_group" "sg" {
 
 # Regra de Entrada: SSH restrito ao seu IP
 resource "aws_security_group_rule" "allow_ssh" {
-  type              = "ingress"
-  from_port         = 22
-  to_port           = 22
-  protocol          = "tcp"
+  type      = "ingress"
+  from_port = 22
+  to_port   = 22
+  protocol  = "tcp"
   #cidr_blocks       = ["${chomp(data.http.my_ip.response_body)}/32"]
   # Lógica: Se var.admin_ip existir, usa ele. Se não, usa o data source.
-  cidr_blocks = [var.admin_ip != "" ? "${var.admin_ip}/32" : "${chomp(data.http.my_ip.response_body)}/32"]
+  cidr_blocks       = [var.admin_ip != "" ? "${var.admin_ip}/32" : "${chomp(data.http.my_ip.response_body)}/32"]
   security_group_id = aws_security_group.sg.id
   description       = "Acesso SSH restrito ao IP publico do administrador"
 }
