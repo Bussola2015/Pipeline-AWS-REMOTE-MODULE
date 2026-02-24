@@ -1,4 +1,4 @@
-name: "Terraform Destroy"
+name: "Terraform Destroy PR Workflow"
 
 on:
   workflow_dispatch: # Só roda manualmente através do botão
