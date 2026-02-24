@@ -1,0 +1,39 @@
+name: "Terraform Destroy"
+
+on:
+  workflow_dispatch: # Só roda manualmente através do botão
+
+jobs:
+  destroy:
+    name: "Terraform Destroy"
+    runs-on: ubuntu-22.04
+    
+    defaults:
+      run:
+        shell: bash
+
+    env:
+      WORKING_DIR: ./environments/dev-pr 
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Terraform Destroy
+        # Precisamos passar as mesmas variáveis do Apply para o Destroy não dar erro
+        run: terraform destroy -var="admin_ip=${{ secrets.MY_PERSONAL_IP }}" -var-file="terraform.tfvars" -auto-approve
+        working-directory: ${{ env.WORKING_DIR }}
