@@ -30,5 +30,8 @@ crash.log
 .vscode/
 .DS_Store
 
-# pdf não é relevante para o projeto, pode ser ignorado
+# 8.pdf não é relevante para o projeto, pode ser ignorado
 *.pdf
+
+# 9. Outros arquivos temporários
+docs/
