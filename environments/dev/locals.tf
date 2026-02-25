@@ -4,5 +4,6 @@ locals {
     Environment = var.environment
     ManagedBy   = "Terraform"
     Owner       = "Junior-Bussola"
+    Teste = "testando-meu-primeiro-pr"
   }
 }
