@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # Ativa o botão manual
 
 jobs:
-  terraform:
+  apply:
     name: "Terraform Apply"
     runs-on: ubuntu-22.04
     env:

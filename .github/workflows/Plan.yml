@@ -6,11 +6,17 @@ on:
   push:
     branches:
       - main
-  pull_request: 
+    paths:
+      - 'environments/dev/**' # Essencial: só roda se mudar o P1
+  pull_request:    #se eu quiser rodar o workflow em PR, eu preciso definir o evento pull_request, e nesse caso, ele vai rodar para qualquer PR que tenha mudanças no diretório 'environments/dev/**'
+    branches:
+      - main
+    paths:
+      - 'environments/dev/**' 
 
 jobs:
-  terraform:
-    name: "Terraform"
+  plan:
+    name: "Terraform Plan"
     runs-on: ubuntu-22.04
 
     defaults:
