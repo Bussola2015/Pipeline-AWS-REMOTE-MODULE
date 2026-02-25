@@ -29,3 +29,6 @@ crash.log
 # 7. Arquivos do Sistema e VS Code
 .vscode/
 .DS_Store
+
+# pdf não é relevante para o projeto, pode ser ignorado
+*.pdf
