@@ -1,7 +1,7 @@
 name: "Terraform Manual Apply"
 
 on:
-  workflow_dispatch: # Ativa o botão manual
+  workflow_dispatch: # Ativa o botão manual no Github
 
 jobs:
   apply:
